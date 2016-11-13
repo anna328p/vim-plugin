@@ -22,7 +22,6 @@ when "install"
   File.write(dir_name+"/#{y["name"]}.plugin.json", raw_json)
 
   File.open(Dir.home+"/.vim/bundle/plugins.yml", "a") { |f|
-    f.puts "---"
     f.puts "#{y["id"]}: #{raw_json}"
   }
 
@@ -30,7 +29,7 @@ when "install"
 when "remove"
   raw_yaml = File.read Dir.home+"/.vim/bundle/plugins.yml";
   j = YAML.load raw_yaml
-  y = j[j[ARGV[1].to_i]]
+  y = j[ARGV[1].to_i]
 
   puts "#{y["full_name"]}: #{y["description"]}"
 
